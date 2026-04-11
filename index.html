@@ -384,13 +384,13 @@
   <div class="income-row">
     <label>Maximum amount</label>
     <span class="income-prefix">$</span>
-    <input type="number" id="total-input" value="3111" min="0" step="50">
+    <input type="number" id="total-input" value="3000" min="0" step="50">
   </div>
 
   <div class="summary">
     <div class="metric">
       <div class="mlabel">Income</div>
-      <div class="mval" id="s-total">$3,104</div>
+      <div class="mval" id="s-total">$3,000</div>
     </div>
     <div class="metric">
       <div class="mlabel">Allocated</div>
@@ -398,7 +398,7 @@
     </div>
     <div class="metric">
       <div class="mlabel">Remaining</div>
-      <div class="mval pos" id="s-remain">$3,104</div>
+      <div class="mval pos" id="s-remain">$3,000</div>
     </div>
   </div>
 
@@ -430,30 +430,27 @@
 <script>
 // Your actual post-August categories and realistic amounts
 const defaults = [
-  { name: 'Tithe',           value: 340,  max: 1200 },
+  { name: 'Tithe',           value: 300,  max: 1200 },
   { name: 'Savings',         value: 100,  max: 1200 },
   { name: 'Student Loans',   value: 1100, max: 1200 },
-  { name: 'Wisdom Tooth',    value: 50,   max: 1200 },
-  { name: 'Rent',            value: 877,  max: 1200 },
+  { name: 'Rent',            value: 1000,  max: 1200 },
   { name: 'Water',           value: 30,   max: 1200 },
   { name: 'Gas',             value: 0,    max: 1200 },
   { name: 'Electric',        value: 30,   max: 1200 },
   { name: 'Wifi',            value: 40,   max: 1200 },
-  { name: 'Rent insurance',  value: 13,   max: 1200 },
   { name: 'Groceries',       value: 100,  max: 1200 },
   { name: 'Parking',         value: 0,    max: 1200 },
   { name: 'Car Insurance',   value: 100,   max: 1200 },
   { name: 'Gas (car)',       value: 50,   max: 1200 },
   { name: 'Netflix',         value: 11,   max: 1200 },
   { name: 'Spotify',         value: 14,   max: 1200 },
-  { name: 'Apple Storage',   value: 3,    max: 1200 },
   { name: 'Card',            value: 150,  max: 1200 },
 ];
 
 // Dot colors cycling through earthy palette
 const dotColors = ['#8B6340','#5C7A52','#B8892A','#8B6340','#5C7A52','#7A5535','#4A6741','#C9A86C','#8B6340','#5C7A52','#B8892A','#8B6340','#5C7A52','#7A5535','#4A6741'];
 
-let total = 3111;
+let total =3000;
 let categories = defaults.map((c, i) => ({ ...c, id: i, color: dotColors[i % dotColors.length] }));
 let nextId = categories.length;
 
