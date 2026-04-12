@@ -28,7 +28,7 @@ Enter your monthly income and allocate it across your expense categories. The pl
 5. Export to PDF when your budget is set
 
 ## Planner Layout
-![Alt Text Description](example.png "Web App Screenshot Title")   
+![A screenshot of the planner](example.png "Example Budget")   
 
 ## Privacy
 
