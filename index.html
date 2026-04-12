@@ -468,7 +468,7 @@
 
     const dotColors = ['#8B6340','#5C7A52','#B8892A','#8B6340','#5C7A52','#7A5535','#4A6741','#C9A86C','#8B6340','#5C7A52','#B8892A','#8B6340','#5C7A52','#7A5535','#4A6741'];
 
-    let total = 3000;
+    let total = 0;
     let categories = defaults.map((c, i) => ({ ...c, id: i, max: total, color: dotColors[i % dotColors.length] }));
     let nextId = categories.length;
 
