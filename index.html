@@ -422,7 +422,7 @@
     <div class="income-row">
       <label>Enter monthly income here:</label>
       <span class="income-prefix">$</span>
-      <input type="number" id="total-input" inputmode = "numeric" pattern="[0-9]*" value="3000" min="0" step="50">
+      <input type="number" id="total-input" inputmode = "decimal" pattern="[0-9]*" value="3000" min="0" step="50">
     </div>
 
     <div class="summary">
@@ -496,7 +496,7 @@
     let nextId = categories.length;
 
     function fmt(n) {
-      return '$' + Math.round(n).toLocaleString();
+      return '$' + n.toLocaleString();
     }
 
     function render() {
@@ -509,7 +509,8 @@
           <div class="cat-top">
             <div class="cat-dot" style="background:${cat.color}"></div>
             <input class="cat-name-input" value="${cat.name}" onchange="renameCategory(${cat.id}, this.value)" title="Click to rename">
-            <input type="number" class="cat-val-input" id="val-${cat.id}" 
+            <input type="number" class="cat-val-input" id="val-${cat.id}"
+              inputmode = "decimal" pattern = "[0-9]*" 
               value="${cat.value}" min="0" max="${cat.max}"
               onchange="updateValue(${cat.id}, +this.value)">
             <button class="remove-btn" onclick="removeCategory(${cat.id})" title="Remove">×</button>
@@ -531,9 +532,9 @@
       const cat = categories.find(c => c.id === id);
       if (cat) cat.value = val;
       const el = document.getElementById('val-' + id);
-      if (el) el.value = Math.round(val);
+      if (el) el.value = val;
       const slider = document.querySelector(`input[type=range][oninput*="${id}"]`);
-      if (slider) slider.value = Math.round(val);
+      if (slider) slider.value = val;
       updateSummary();
     }
 
