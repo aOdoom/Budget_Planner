@@ -306,29 +306,6 @@
     .cat-val-input:focus { border-bottom-color: var(--accent); }
 
 
-
-
-    .cat-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .cat-footer input[type=number] {
-      width: 64px;
-      font-size: 11px;
-      border: none;
-      border-bottom: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      font-family: 'DM Sans', sans-serif;
-      outline: none;
-      padding: 0 0 1px;
-      text-align: right;
-    }
-
     .add-row {
       display: flex;
       gap: 8px;
@@ -492,7 +469,7 @@
     const dotColors = ['#8B6340','#5C7A52','#B8892A','#8B6340','#5C7A52','#7A5535','#4A6741','#C9A86C','#8B6340','#5C7A52','#B8892A','#8B6340','#5C7A52','#7A5535','#4A6741'];
 
     let total = 3000;
-    let categories = defaults.map((c, i) => ({ ...c, id: i, color: dotColors[i % dotColors.length] }));
+    let categories = defaults.map((c, i) => ({ ...c, id: i, max: total, color: dotColors[i % dotColors.length] }));
     let nextId = categories.length;
 
     function fmt(n) {
@@ -517,11 +494,6 @@
           </div>
           <input type="range" min="0" max="${cat.max}" step="1" value="${cat.value}"
             oninput="updateValue(${cat.id}, +this.value)">
-          <div class="cat-footer">
-            <span>Slider max:</span>
-            <input type="number" value="${cat.max}" min="1" step="50"
-              onchange="updateMax(${cat.id}, +this.value)">
-          </div>
         `;
         list.appendChild(row);
       });
@@ -543,14 +515,6 @@
       if (cat) cat.name = name;
     }
 
-    function updateMax(id, max) {
-      const cat = categories.find(c => c.id === id);
-      if (!cat || max < 1) return;
-      cat.max = max;
-      if (cat.value > max) cat.value = max;
-      render();
-    }
-
     function removeCategory(id) {
       categories = categories.filter(c => c.id !== id);
       render();
@@ -561,7 +525,7 @@
       const name = inp.value.trim();
       if (!name) return;
       const color = dotColors[nextId % dotColors.length];
-      categories.push({ id: nextId++, name, value: 0, max: 1200, color });
+      categories.push({ id: nextId++, name, value: 0, max: total, color });
       inp.value = '';
       render();
       document.getElementById('cat-list').lastElementChild?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -578,6 +542,8 @@
 
     document.getElementById('total-input').addEventListener('input', function() {
       total = Math.max(0, +this.value || 0);
+      categories.forEach(c => c.max = total);
+      render();
       updateSummary();
     });
 
@@ -614,9 +580,11 @@
       .filter(c => c.value > 0)
       .map(c => `
           <tr>
-            <td class="cat-cell">
-              <span class="dot" style="background:${c.color}"></span>
-              ${c.name}
+            <td>
+              <span class="cat-cell">
+                <span class="dot" style="background:${c.color}"></span>
+                ${c.name}
+              </span>
             </td>
             <td class="amt-cell">${fmt(c.value)}</td>
           </tr>
@@ -736,7 +704,7 @@
 
             td { padding: 9px 12px; vertical-align: middle; }
             .cat-cell {
-              display: flex;
+              display: inline-flex;
               align-items: center;
               gap: 8px;
             }
