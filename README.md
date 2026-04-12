@@ -40,4 +40,4 @@ HTML · CSS · Vanilla JavaScript
 
 ---
 
-*Built by [@aOdoom](https://github.com/aodoom)*
+*Built by [@aOdoom](https://github.com/aodoom) with [Claude](https://claude.ai)*
