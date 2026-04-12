@@ -569,12 +569,18 @@
       render();
     }
     const scrollToTopBtn = document.getElementById("scrollToTopBtn")
+    let scrollTimer = null;
+
     window.addEventListener("scroll", () => {
       if (window.scrollY > 200) {
         scrollToTopBtn.classList.add("visible");
-      } else {
-        scrollToTopBtn.classList.remove("visible");
       }
+
+      clearTimeout(scrollTimer);
+
+      scrollTimer = setTimeout(() => {
+        scrollToTopBtn.classList.remove("visible");
+      }, 1500);
     });
 
     scrollToTopBtn.addEventListener("click", () => {
