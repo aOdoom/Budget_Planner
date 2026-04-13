@@ -65,8 +65,9 @@
     }
 
     .page-header p {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--muted);
+      line-height: 1.5;
       font-weight: 300;
     }
 
@@ -429,6 +430,8 @@
     <div class="page-header">
       <h1>Budget Planner</h1>
       <p>Let's destress your life! 🥳</p>
+      <p>Edit categories and amounts. See what's possible.</p>
+      <p>Export when done.</p>
     </div>
 
     <div class="income-row">
@@ -486,19 +489,8 @@
     const defaults = [
       { name: 'Tithe',                 value: 0},
       { name: 'Savings',               value: 0},
-      { name: 'Student loans',         value: 0},
       { name: 'Rent',                  value: 0},
-      { name: 'Water',                 value: 0},
-      { name: 'Gas',                   value: 0},
-      { name: 'Electric',              value: 0},
-      { name: 'Wifi',                  value: 0},
-      { name: 'Groceries',             value: 0},
-      { name: 'Parking',               value: 0},
-      { name: 'Car insurance',         value: 0},
-      { name: 'Gas (car)',             value: 0},
-      { name: 'Netflix',               value: 0},
-      { name: 'Spotify',               value: 0},
-      { name: 'Credit card payments',  value: 0},
+      { name: 'Debt payments',         value: 0},
     ];
 
     const dotColors = ['#8B6340','#5C7A52','#B8892A','#8B6340','#5C7A52','#7A5535','#4A6741','#C9A86C','#8B6340','#5C7A52','#B8892A','#8B6340','#5C7A52','#7A5535','#4A6741'];
